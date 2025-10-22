@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import { env } from './env';
+import { env } from './env.js';
 
 const connectDB = async () => {
   const { HOST_USERNAME, HOST_DATABASE, HOST_CLUSTER, HOST_PASSWORD } = env;
 
-  const URI = `mongodb+srv://${HOST_USERNAME}:${HOST_PASSWORD}@${HOST_CLUSTER}.znlxk8q.mongodb.net/${HOST_DATABASE}?retryWrites=true&w=major`;
+  const URI = `mongodb+srv://${HOST_USERNAME}:${HOST_PASSWORD}@${HOST_CLUSTER}.znlxk8q.mongodb.net/${HOST_DATABASE}?retryWrites=true&w=majority`;
 
   try {
     await mongoose.connect(URI);
