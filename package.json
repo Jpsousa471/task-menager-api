@@ -2,7 +2,7 @@
   "name": "task-menager-api",
   "version": "1.0.0",
   "type": "module",
-  "main": "src/server.ts",
+  "main": "src/server.js",
   "scripts": {
     "dev": "tsx --env-file=.env --watch src/server.ts",
     "build": "tsc",
