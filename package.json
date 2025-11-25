@@ -2,11 +2,11 @@
   "name": "task-menager-api",
   "version": "1.0.0",
   "type": "module",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "dev": "tsx --env-file=.env --watch src/server.ts",
     "build": "tsc",
-    "start": "node --env-file=.env server.js"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",

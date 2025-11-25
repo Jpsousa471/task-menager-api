@@ -15,4 +15,6 @@ const startServer = async () => {
   }
 };
 
+ // "start": "node --env-file=.env server.js"
+
 startServer();
