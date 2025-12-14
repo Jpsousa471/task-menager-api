@@ -7,10 +7,9 @@ import UserModel from '../models/register-model.js';
 import jwt from 'jsonwebtoken';
 import { env } from '../config/env.js';
 
-
 class UserService {
-  async createSecureServer({ name, email, password }: CreateUserProps) {
-    const user = await UserModel.findOne({ email });
+  async createUser({ name, email, password }: CreateUserProps) {
+    const user = await UserModel.create({ name, email, password });
     if (user) {
       throw new Error('Usuário já exitente');
     }
@@ -31,8 +30,8 @@ class UserService {
     if (!isValid) {
       throw new Error('Senha inválida');
     }
-    const token = jwt.sign({ id: user._id }, env.);
-    return token
+    const token = jwt.sign({ id: user._id }, 'segredo', { expiresIn: '1h' });
+    return token;
   }
 }
 export default new UserService();
