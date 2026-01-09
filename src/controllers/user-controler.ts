@@ -11,10 +11,11 @@ class UserController {
       const { name, email, password } = data;
 
       const newUser = await UserService.createUser(name, email, password);
+      console.log(newUser);
 
       res.status(201).json(newUser);
     } catch (error: any) {
-      res.status(400).json({ message: error.message });
+      res.status(error.status || 400).json({ message: error.message });
     }
   }
 
@@ -29,3 +30,5 @@ class UserController {
     }
   }
 }
+
+export default new UserController();

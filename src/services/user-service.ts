@@ -8,10 +8,10 @@ import jwt from 'jsonwebtoken';
 import { env } from '../config/env.js';
 
 class UserService {
-  async createUser({ name, email, password }: CreateUserProps) {
-    const user = await UserModel.create({ name, email, password });
-    if (user) {
-      throw new Error('Usuário já exitente');
+  async createUser(name: string, email: string, password: string) {
+    const existingUser = await UserModel.findOne({ email });
+    if (existingUser) {
+      throw { message: 'Email já existente no sistema', status: 409 };
     }
     const hashPassword = await bcrypt.hash(password, 10);
     const newUser = new UserModel({ name, email, password: hashPassword });
@@ -21,7 +21,7 @@ class UserService {
     };
   }
 
-  async login({ email, password }: LoginUserProps) {
+  async login(email: string, password: string) {
     const user = await UserModel.findOne({ email });
     if (!user) {
       throw new Error('Usuário não encontrado');
